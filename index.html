@@ -1,776 +1,1249 @@
-<!DOCTYPE html>
+<!DO<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegantora | The Essence of Royalty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Elegantora - The Essence of Royalty. Premium Artisanal Perfumery.">
+    <title>Elegantora | The Essence of Sovereignty</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-       /* --- THE NEON ROYAL GOLD PRODUCT CARD --- */
-.product-card {
-    background: var(--glass);
-    border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle border when idle */
+       /* --- LOYALTY CARD STYLES --- */
+.loyalty-container {
+    padding: 100px 0;
+    background: radial-gradient(circle at center, #1a0033 0%, #05000a 100%);
+}
+
+.loyalty-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(5, 0, 10, 0.9) 100%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 20px;
-    text-align: center;
+    padding: 40px;
     position: relative;
     overflow: hidden;
-    /* This makes the hover smooth and bouncy */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* THE HOVER TRIGGER */
-.product-card:hover {
-    transform: translateY(-12px) scale(1.02); /* Lifts and grows slightly */
-    background: rgba(20, 0, 43, 0.9); /* Darkens background to make gold pop */
-    
-    /* THE NEON GLOW */
-    border-color: #ffd700; 
-    box-shadow: 
-        0 0 10px rgba(212, 175, 55, 0.5),  /* Inner soft glow */
-        0 0 25px rgba(212, 175, 55, 0.7),  /* Middle neon glow */
-        0 0 45px rgba(212, 175, 55, 0.3);  /* Outer wide aura */
+.loyalty-card::before {
+    content: 'ELEGANTORA';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 60px;
+    font-family: 'Cinzel';
+    opacity: 0.03;
+    transform: rotate(-15deg);
 }
 
-/* Make the image glow slightly too */
-.product-card:hover img {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-    filter: brightness(1.1);
+.stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 30px 0;
 }
 
-/* Update the button to match the neon vibe on hover */
-.product-card:hover .buy-btn {
-    background: var(--primary-gold);
+.stamp-slot {
+    aspect-ratio: 1;
+    border: 1px dashed var(--p-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: rgba(212, 175, 55, 0.3);
+}
+
+.stamp-slot.active {
+    border-style: solid;
+    background: var(--p-gold);
     color: #000;
-    box-shadow: 0 0 15px var(--primary-gold);
-} /* --- ROOT VARIABLES --- */
+    box-shadow: 0 0 15px var(--p-gold);
+}
+
+.reward-banner {
+    background: var(--p-gold);
+    color: #000;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Cinzel';
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+ /* --- 1. LUXURY DESIGN SYSTEM --- */
         :root {
-            --primary-gold: #d4af37;
-            --dark-gold: #aa841e;
-            --deep-purple: #14002b;
-            --bg-dark: #0d001a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --text-light: #f4f4f4;
-            --transition: all 0.4s ease;
+            --p-gold: #d4af37;        /* Primary Gold */
+            --l-gold: #f1d592;        /* Light Gold */
+            --d-gold: #8a6d3b;        /* Dark Gold */
+            --neon-gold: #ffdf00;     /* Neon Gold Effect */
+            --royal-bg: #0d001a;      /* Deep Purple/Black */
+            --deep-black: #05000a;    /* True Black */
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(212, 175, 55, 0.2);
+            --text-main: #f4f4f4;
+            --text-dim: #b8b8b8;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- GLOBAL STYLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- 2. GLOBAL RESET & SCROLLBAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--deep-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--d-gold), var(--p-gold));
+            border-radius: 10px;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--royal-bg);
+            color: var(--text-main);
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(26, 0, 51, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        h1, h2, h3, .brand-name {
+        /* --- 3. TYPOGRAPHY & HEADINGS --- */
+        h1, h2, h3, h4, .cinzel {
             font-family: 'Cinzel', serif;
-            color: var(--primary-gold);
+            color: var(--p-gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            font-weight: 700;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        .luxury-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--l-gold);
         }
 
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- NAVIGATION --- */
+        /* --- 4. NAVIGATION SYSTEM --- */
         nav {
-            background: rgba(13, 0, 26, 0.95);
-            height: 80px;
-            display: flex;
-            align-items: center;
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid var(--primary-gold);
-            backdrop-filter: blur(10px);
+            top: 0; width: 100%; height: 90px;
+            z-index: 9999;
+            display: flex; align-items: center;
+            background: rgba(5, 0, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: var(--transition);
         }
+
+        nav.scrolled { height: 70px; background: var(--deep-black); }
 
         .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
+            width: 90%; max-width: 1500px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-gold);
-        }
+        .logo-box { display: flex; flex-direction: column; align-items: center; }
+        .logo-main { font-size: 30px; letter-spacing: 7px; font-weight: 900; color: var(--p-gold); text-decoration: none; }
+        .logo-tag { font-size: 8px; letter-spacing: 5px; color: var(--l-gold); margin-top: -5px; }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
+        .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a {
-            font-weight: 400;
-            font-size: 14px;
+            text-decoration: none; color: #fff;
+            font-size: 12px; font-weight: 500; letter-spacing: 2px;
             transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-            text-shadow: 0 0 10px var(--primary-gold);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            color: var(--primary-gold);
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(20, 0, 43, 0.7), rgba(13, 0, 26, 0.9)), 
-                        url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 80px;
-        }
-
-        .hero-content h2 {
-            font-size: 60px;
-            margin-bottom: 10px;
-            animation: fadeInDown 1s ease;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 30px;
-            letter-spacing: 5px;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .btn-gold {
-            background: var(--primary-gold);
-            color: #000;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            display: inline-block;
-            transition: var(--transition);
-            border: 2px solid var(--primary-gold);
-        }
-
-        .btn-gold:hover {
-            background: transparent;
-            color: var(--primary-gold);
-            box-shadow: 0 0 20px var(--primary-gold);
-        }
-
-        /* --- ABOUT SECTION --- */
-        .about {
-            padding: 100px 0;
-            background: var(--deep-purple);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            margin-bottom: 20px;
-            font-size: 36px;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: -20px 20px 0 var(--primary-gold);
-        }
-
-        /* --- PRODUCTS GRID --- */
-        .shop {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 40px;
             position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
         }
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            background: var(--primary-gold);
-            bottom: 0;
-            left: 25%;
+        .nav-links a:hover { color: var(--p-gold); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 1px; background: var(--p-gold);
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- 5. RESPONSIVE GRID (FIXED 2-COLUMN) --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* FORCED 2 COLUMNS ON PHONE */
+            gap: 15px;
+            padding: 20px 0;
         }
 
-  /* --- UPDATED PRODUCTS GRID --- */
-.product-grid {
-    display: grid;
-    /* Default: 2 columns for mobile */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 15px; /* Slightly smaller gap for mobile screens */
-}
+        @media (min-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; } }
+        @media (min-width: 1100px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 35px; } }
 
-/* For iPads/Tablets (Portrait & Landscape) */
-@media (min-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
-}
-
-/* For Desktop/Laptops */
-@media (min-width: 1024px) {
-    .product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* This forces 2 columns on mobile */
-    gap: 15px;
-}
-
-@media (min-width: 1024px) {
-    .product-grid {
-        grid-template-columns: repeat(4, 1fr); /* This gives you 4 on desktop */
-    }
-}
-
-        @media (max-width: 480px) {
-    .product-card {
-        padding: 12px;
-        border-radius: 12px;
-    }
-    
-    .product-card h3 {
-        font-size: 14px; /* Smaller title */
-        margin-bottom: 5px;
-    }
-
-    .product-price {
-        font-size: 16px;
-    }
-
-    .buy-btn {
-        padding: 8px;
-        font-size: 12px;
-    }
-
-    .product-card img {
-        height: 160px; /* Shorter images for mobile 2-column look */
-    }
-}
-.product-card {
+        /* --- 6. NEON ROYAL PRODUCT CARDS --- */
+        .product-card {
             background: var(--glass);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            transition: var(--transition);
             position: relative;
             overflow: hidden;
+            transition: var(--bounce);
         }
 
         .product-card:hover {
-            border-color: var(--primary-gold);
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--primary-gold);
-            color: #000;
-            padding: 5px 12px;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 5px;
-            z-index: 2;
+            transform: translateY(-15px);
+            background: rgba(20, 0, 43, 0.7);
+            border-color: var(--neon-gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .product-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            width: 100%; height: 260px; object-fit: cover;
+            border-radius: 15px; margin-bottom: 20px;
+            transition: var(--transition);
         }
 
-        .product-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+        .product-card:hover img { transform: scale(1.05); }
 
-        .product-price {
-            font-size: 22px;
-            color: var(--primary-gold);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-
-        .stock-notice {
-            color: #ff4d4d;
-            font-size: 13px;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .timer {
-            background: rgba(0,0,0,0.3);
-            padding: 5px;
-            font-size: 12px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            color: var(--primary-gold);
-        }
+        .price-tag { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .price-tag .old { text-decoration: line-through; color: #777; font-size: 15px; margin-right: 10px; }
 
         .buy-btn {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid var(--primary-gold);
-            color: var(--primary-gold);
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
+            width: 100%; padding: 12px; background: transparent;
+            border: 1px solid var(--p-gold); color: var(--p-gold);
+            border-radius: 10px; font-weight: 700; cursor: pointer;
+            text-transform: uppercase; font-family: 'Cinzel', serif;
             transition: var(--transition);
         }
 
-        .buy-btn:hover {
-            background: var(--primary-gold);
-            color: #000;
-        }
-        /* --- TESTIMONIALS SECTION --- */
-        .testimonials {
-            padding: 100px 0;
-            background: var(--bg-dark);
-            text-align: center;
-        }
+        .product-card:hover .buy-btn { background: var(--p-gold); color: #000; box-shadow: 0 0 15px var(--p-gold); }
 
-        .testimonial-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 0;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-        }
-
-        .testimonial-slider::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
-        }
-
-        .testimonial-card {
-            min-width: 350px;
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 15px;
-            border-left: 4px solid var(--primary-gold);
-            text-align: left;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
-
-        .customer-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .customer-info .avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-weight: bold;
-        }
-
-        /* --- FAQ SECTION --- */
-        .faq {
-            padding: 100px 0;
-            background: var(--deep-purple);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            background: var(--glass);
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            background: rgba(0,0,0,0.2);
-            transition: all 0.5s cubic-bezier(0,1,0,1);
-            color: #bbb;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 1000px;
-            padding: 20px;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- RESPONSIVE FIXES --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .hero-content h2 { font-size: 40px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-img { order: -1; }
-        }
+        /* --- 7. ANIMATIONS --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="container nav-container">
-            <div class="logo">ELEGANTORA</div>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-box">
+                <a href="#" class="logo-main">ELEGANTORA</a>
+                <span class="logo-tag">THE ESSENCE OF SOVEREIGNTY</span>
+            </div>
+            
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">The Brand</a></li>
-                <li><a href="#shop">Collection</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="btn-gold" style="padding: 10px 20px;">Order Now</a></li>
+                <li><a href="#heritage">Heritage</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#academy">Scent Academy</a></li>
+                <li><a href="#concierge">Concierge</a></li>
             </ul>
-            <div class="mobile-menu-btn">☰</div>
+
+            <div class="nav-actions" style="display: flex; gap: 20px; align-items: center;">
+                <i class="fa-solid fa-magnifying-glass" style="color: var(--p-gold); cursor: pointer; font-size: 14px;"></i>
+                <a href="https://wa.me/916238763473" class="buy-btn" style="padding: 8px 20px; font-size: 10px; text-decoration: none;">Order Now</a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>ELEGANCE IN EVERY DROP</h2>
-            <p>ESTABLISHED 2026 • LUXURY PERFUMERY</p>
-            <a href="#shop" class="btn-gold">Explore Collection</a>
+    <section id="home" style="height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(5, 0, 10, 0.7), rgba(13, 0, 26, 0.95)), url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80') center/cover; z-index: -1;"></div>
+        
+        <div style="text-align: center; max-width: 1000px; padding: 0 20px; z-index: 10;">
+            <div class="reveal active" style="margin-bottom: 30px;">
+                <span style="border: 1px solid var(--p-gold); padding: 8px 20px; border-radius: 50px; font-size: 10px; letter-spacing: 4px; color: var(--p-gold);">EST. MMXXVI • ARTISANAL</span>
+            </div>
+            
+            <h1 style="font-size: clamp(40px, 10vw, 95px); line-height: 0.9; margin-bottom: 25px; color: #fff;" class="reveal active">
+                Beyond <span class="luxury-italic" style="color: var(--p-gold);">Scent.</span> <br> An Absolute <span style="color: var(--p-gold);">Presence.</span>
+            </h1>
+            
+            <p style="font-size: clamp(14px, 2vw, 18px); color: var(--text-dim); max-width: 650px; margin: 0 auto 40px; letter-spacing: 1px; line-height: 1.8;" class="reveal active">
+                Elegantora does not simply create perfume; we bottle the aura of sovereignty. Crafted in the heart of elite perfumery using 100% pure botanical extracts and rare minerals.
+            </p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;" class="reveal active">
+                <a href="#collection" class="buy-btn" style="padding: 18px 45px; text-decoration: none; background: var(--p-gold); color: #000;">Enter The Vault</a>
+                <a href="#heritage" class="buy-btn" style="padding: 18px 45px; text-decoration: none;">Our Story</a>
+            </div>
+        </div>
+
+        <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-align: center;">
+            <p style="font-size: 8px; letter-spacing: 3px; color: var(--p-gold); margin-bottom: 10px;">SCROLL</p>
+            <div style="width: 1px; height: 60px; background: linear-gradient(var(--p-gold), transparent); margin: 0 auto;"></div>
         </div>
     </section>
 
-    <section class="about" id="about">
-        <div class="container about-grid">
-            <div class="about-text">
-                <h2>Our Aura, Your Identity</h2>
-                <p>At Elegantora, we believe that a scent is more than just a fragrance; it is a silent introduction. Founded on the principles of royal heritage and modern sophistication, our blends are crafted using the finest ingredients sourced globally.</p>
-                <br>
-                <p>Each bottle is a masterpiece, designed to resonate with your personal power and elegance. Experience the transition from ordinary to extraordinary.</p>
+    <section style="background: var(--deep-black); padding: 60px 0; border-bottom: 1px solid var(--glass-border);">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px;">
+            <div style="text-align: center;">
+                <h4 style="font-size: 20px; color: #fff;">24H+</h4>
+                <p style="font-size: 9px; letter-spacing: 2px; color: var(--p-gold);">UNRIVALED LONGEVITY</p>
             </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Luxury Perfume Creation">
+            <div style="text-align: center;">
+                <h4 style="font-size: 20px; color: #fff;">PURE</h4>
+                <p style="font-size: 9px; letter-spacing: 2px; color: var(--p-gold);">PARFUM CONCENTRATION</p>
+            </div>
+            <div style="text-align: center;">
+                <h4 style="font-size: 20px; color: #fff;">GLOBAL</h4>
+                <p style="font-size: 9px; letter-spacing: 2px; color: var(--p-gold);">WORLDWIDE SOURCING</p>
+            </div>
+            <div style="text-align: center;">
+                <h4 style="font-size: 20px; color: #fff;">ELITE</h4>
+                <p style="font-size: 9px; letter-spacing: 2px; color: var(--p-gold);">ROYAL SATISFACTION</p>
             </div>
         </div>
     </section>
 
-    <section class="shop" id="shop">
-        <div class="container">
-            <div class="section-title">
-                <h2>Signature Collection</h2>
+    <section id="heritage" style="padding: 140px 0; background: var(--royal-bg);">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 100px; align-items: center;">
+            
+            <div class="reveal" style="position: relative;">
+                <div style="position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 1px solid var(--p-gold); z-index: 1;"></div>
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80" alt="Royal Craft" style="width: 100%; position: relative; z-index: 2; border-radius: 4px; filter: grayscale(0.4);">
+                <div style="position: absolute; bottom: -30px; right: -30px; background: var(--p-gold); color: #000; padding: 40px; z-index: 3; font-family: 'Cinzel'; font-weight: 900;">
+                    CRAFTED <br> IN SILENCE
+                </div>
             </div>
+
+            <div class="reveal">
+                <h4 style="color: var(--p-gold); letter-spacing: 5px; margin-bottom: 20px;">The Alchemist's Legacy</h4>
+                <h2 style="font-size: 45px; margin-bottom: 30px; line-height: 1.2;">We Bottle the <span class="luxury-italic">Memories</span> of Kings.</h2>
+                <p style="color: var(--text-main); margin-bottom: 25px; font-weight: 300;">
+                    Since our inception, Elegantora has operated with one goal: to redefine what it means to smell like wealth. Our scents are not mixed; they are engineered through a process of high-pressure maceration that lasts for 48 lunar days.
+                </p>
+                <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 15px;">
+                    From the deep Agarwood forests of Cambodia to the high-altitude Rose valleys of Bulgaria, our ingredients are sustainably harvested only during their peak bloom to ensure the soul of the plant is captured in every drop.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="border-left: 2px solid var(--p-gold); padding-left: 20px;">
+                        <h5 style="color: #fff; font-family: 'Cinzel';">Sustainably Sourced</h5>
+                        <p style="font-size: 11px; color: var(--text-dim);">100% Ethical Global Sourcing.</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--p-gold); padding-left: 20px;">
+                        <h5 style="color: #fff; font-family: 'Cinzel';">Hand Bottled</h5>
+                        <p style="font-size: 11px; color: var(--text-dim);">Every unit is personally inspected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><section id="collection" style="padding: 100px 0; background: var(--deep-black); position: relative;">
+        <div style="position: absolute; top: 20%; right: 0; width: 300px; height: 300px; background: var(--p-gold); filter: blur(180px); opacity: 0.05; pointer-events: none;"></div>
+
+        <div style="width: 90%; max-width: 1500px; margin: 0 auto;">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h4 style="color: var(--p-gold); letter-spacing: 6px; margin-bottom: 10px;">The Signature Series</h4>
+                <h2 style="font-size: 40px; color: #fff;">The Royal Vault</h2>
+                <div style="width: 60px; height: 2px; background: var(--p-gold); margin: 20px auto;"></div>
+            </div>
+
             <div class="product-grid">
                 
-                <div class="product-card">
-                    <div class="badge">BEST SELLER</div>
-                    <img src="WhatsApp Image 2026-03-28 at 10.18.33 PM.jpeg" alt="Royal Oud">
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: var(--p-gold); color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5; letter-spacing: 1px;">MOST WANTED</div>
+                    <img src="WhatsApp Image 2026-03-28 at 10.18.33 PM.jpeg" alt="Berry Bond">
                     <h3>Berry Bond</h3>
-                    <p class="stock-notice">Only 3 left in stock!</p>
-                    <div class="timer" data-time="604800">Loading offer...</div>
-                    <p class="product-price"><span class="old-price">₹120</span>₹99</p>
-                    <button class="buy-btn" onclick="orderNow('Royal Oud')">Order via WhatsApp</button>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Saffron • Wild Berries • Amber</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Wild Strawberry, Saffron</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Jasmine, Violet</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> White Oakmoss, Crystal Amber</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹120</span>
+                        <span>₹99</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Berry Bond')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: #ff4d4d; margin-top: 12px;"><i class="fa-solid fa-fire"></i> High Demand: 4 Left</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #fff; color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5; letter-spacing: 1px;">NEW ARRIVAL</div>
                     <img src="daregirl.jpeg" alt="DareGirl">
                     <h3>DareGirl</h3>
-                    <p class="stock-notice">New Arrival</p>
-                    <div class="timer" data-time="500000">Loading offer...</div>
-                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
-                    <button class="buy-btn" onclick="orderNow('Dare Girl;')">Order via WhatsApp</button>
-
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Vanilla • Musk • Orchid</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Italian Bergamot, Pear</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Vanilla Orchid, Black Rose</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Patchouli, Praline, Papyrus</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹120</span>
+                        <span>₹99</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('DareGirl')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">Standard Delivery: 3-5 Days</p>
                 </div>
 
-                <div class="product-card">
-                    <div class="badge">GOLD EDITION</div>
+                <div class="product-card reveal">
                     <img src="WhatsApp Image 2026-03-28 at 10.18.32 PM.jpeg" alt="VelvetBlast">
                     <h3>VelvetBlast</h3>
-                    <div class="timer" data-time="400000">Loading offer...</div>
-                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
-                    <button class="buy-btn" onclick="orderNow('Velvet Blast')">Order via WhatsApp</button>
-
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Oud • Rose • Smoke</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Pink Pepper, Cloves</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Chestnut, Guaiac Wood</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Cashmeran, Peruvian Balsam</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹120</span>
+                        <span>₹99</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('VelvetBlast')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">Unisex Perfection</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card reveal">
                     <img src="blue-x.jpeg" alt="Blue-X">
                     <h3>Blue-X</h3>
-                    <div class="timer" data-time="300000">Loading offer...</div>
-                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
-                    <button class="buy-btn" onclick="orderNow('Blue-X')">Order via WhatsApp</button>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Sea Salt • Citrus • Sage</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Ambrette Seeds, Grapefruit</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Sea Salt, Red Algae</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> White Musk, Sage</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹120</span>
+                        <span>₹99</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Blue-X')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">Fresh & Athletic</p>
+                </div>
 
-                                 </div>
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #000; color: var(--p-gold); border: 1px solid var(--p-gold); font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">LIMITED EDITION</div>
+                    <img src="https://images.unsplash.com/photo-1585120040315-2241b774ad0f?auto=format&fit=crop&q=80" alt="Mystic Oud">
+                    <h3>Mystic Oud</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Agarwood • Leather • Tobacco</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Whiskey, Spicy Notes</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Cinnamon, Coriander</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Cedarwood, Sandalwood</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹150</span>
+                        <span>₹129</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Mystic Oud')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80" alt="Royal Rose">
+                    <h3>Royal Rose</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Damask Rose • Peony • Honey</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Rhubarb, Lychee</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Turkish Rose, Lily</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Cashmeran, Musk</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹130</span>
+                        <span>₹109</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Royal Rose')">WhatsApp Order</button>
+                </div>
+
             </div>
         </div>
     </section>
+<div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; right: 15px; color: var(--p-gold); font-size: 14px;"><i class="fa-solid fa-star"></i> 4.9/5</div>
+                    <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?auto=format&fit=crop&q=80" alt="Golden Sands">
+                    <h3>Golden Sands</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Salted Caramel • Vanilla • Sandalwood</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Pistachio, Almond</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Heliotrope, Jasmine Petals</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Vanilla, Salted Caramel, Sandalwood</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹110</span>
+                        <span>₹89</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Golden Sands')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">Warm Summer Nights</p>
+                </div>
 
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Royals Say</h2>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial-card">
-                    <p>"The Royal Oud is unlike anything I've ever used. It lasts all day and I get compliments everywhere I go. Truly worth every penny."</p>
-                    <div class="customer-info">
-                        <div class="avatar">AK</div>
-                        <div>
-                            <strong>Sanvika</strong><br>
-                            <small>Verified Buyer</small>
-                        </div>
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80" alt="Noir Sapphire">
+                    <h3>Noir Sapphire</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Blackberry • Vetiver • Cedar</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Blackberry, Bay Leaves</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Floral Notes, Galbanum</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Cedarwood, Vetiver</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹140</span>
+                        <span>₹119</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Noir Sapphire')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">The Scent of Mystery</p>
+                </div>
+
+            </div> </div>
+    </section>
+
+    <section id="academy" style="padding: 150px 0; background: linear-gradient(to bottom, var(--royal-bg), var(--deep-black)); border-top: 1px solid var(--glass-border);">
+        <div style="width: 90%; max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 80px; align-items: center;">
+                
+                <div class="reveal">
+                    <h4 style="color: var(--p-gold); letter-spacing: 4px; margin-bottom: 20px;">Master Your Aura</h4>
+                    <h2 style="font-size: 40px; margin-bottom: 30px; line-height: 1.1;">The Anatomy of a <br><span class="luxury-italic">Masterpiece</span></h2>
+                    <p style="color: var(--text-dim); margin-bottom: 40px;">Fragrance is a symphony that unfolds over time. To truly appreciate Elegantora, one must understand the three layers of the olfactive pyramid.</p>
+                    
+                    <div style="margin-bottom: 30px; border-bottom: 1px solid rgba(212,175,55,0.1); padding-bottom: 20px;">
+                        <h5 style="color: #fff; font-family: 'Cinzel'; margin-bottom: 10px;">01. The Opening (Top Notes)</h5>
+                        <p style="font-size: 13px; color: var(--text-dim);">The immediate impression. Usually volatile molecules like Citrus and Light Berries. They last 5-15 minutes, inviting you into the story.</p>
+                    </div>
+
+                    <div style="margin-bottom: 30px; border-bottom: 1px solid rgba(212,175,55,0.1); padding-bottom: 20px;">
+                        <h5 style="color: #fff; font-family: 'Cinzel'; margin-bottom: 10px;">02. The Heart (Middle Notes)</h5>
+                        <p style="font-size: 13px; color: var(--text-dim);">The soul of the perfume. These emerge after the top notes dissipate and define the personality. Florals and spices usually reside here.</p>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <h5 style="color: #fff; font-family: 'Cinzel'; margin-bottom: 10px;">03. The Dry Down (Base Notes)</h5>
+                        <p style="font-size: 13px; color: var(--text-dim);">The foundation. Heavy molecules like Musk, Oud, and Amber. These provide the 24-hour longevity Elegantora is known for.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"I was skeptical about ordering via WhatsApp, but the process was seamless. Elegantora team was very helpful with scent recommendations."</p>
-                    <div class="customer-info">
-                        <div class="avatar">PS</div>
-                        <div>
-                            <strong>Avani</strong><br>
-                            <small>Verified Buyer</small>
+
+                <div class="reveal" style="position: relative; display: flex; justify-content: center;">
+                    <div style="width: 300px; height: 350px; border-left: 150px solid transparent; border-right: 150px solid transparent; border-bottom: 350px solid rgba(212, 175, 55, 0.05); position: relative;">
+                        <div style="position: absolute; bottom: 40px; left: -50px; width: 100px; text-align: center;">
+                            <span style="font-size: 10px; color: var(--p-gold); font-family: 'Cinzel';">BASE</span>
+                        </div>
+                        <div style="position: absolute; bottom: 150px; left: -50px; width: 100px; text-align: center;">
+                            <span style="font-size: 10px; color: var(--p-gold); font-family: 'Cinzel';">HEART</span>
+                        </div>
+                        <div style="position: absolute; bottom: 260px; left: -50px; width: 100px; text-align: center;">
+                            <span style="font-size: 10px; color: var(--p-gold); font-family: 'Cinzel';">TOP</span>
                         </div>
                     </div>
+                    <div style="position: absolute; bottom: 116px; width: 180px; height: 1px; background: var(--p-gold); opacity: 0.3;"></div>
+                    <div style="position: absolute; bottom: 233px; width: 80px; height: 1px; background: var(--p-gold); opacity: 0.3;"></div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"VelvetBlast is my new signature scent. The packaging was beautiful and the delivery was fast. Highly recommended!"</p>
-                    <div class="customer-info">
-                        <div class="avatar">RM</div>
-                        <div>
-                            <strong>Vinay Krishna</strong><br>
-                            <small>Verified Buyer</small>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
+<div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: var(--p-gold); color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">ELITE PICK</div>
+                    <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&q=80" alt="Midnight Velvet">
+                    <h3>Midnight Velvet</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Black Rose • Incense • Leather</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Incense, Red Berries</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Iris, Patchouli, Rose</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Woodsy Notes, Leather, Amber</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹160</span>
+                        <span>₹139</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Midnight Velvet')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">The Scent of Luxury Nights</p>
+                </div>
 
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Citrus Reign">
+                    <h3>Citrus Reign</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Blood Orange • Neroli • Musk</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Sicilian Orange, Calabrian Bergamot</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Tunisian Neroli, Grapefruit Blossom</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> White Musk, Cedar</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹110</span>
+                        <span>₹89</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Citrus Reign')">WhatsApp Order</button>
+                    <p style="font-size: 9px; color: var(--text-dim); margin-top: 12px;">Fresh • Radiant • Powerful</p>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80" alt="Emerald Oud">
+                    <h3>Emerald Oud</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Green Cardamom • Oud • Vetiver</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Cardamom, Pink Pepper</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Rare Agarwood (Oud)</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Vetiver, Tonka Bean, Amber</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹180</span>
+                        <span>₹159</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Emerald Oud')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; right: 15px; color: #ffdf00;"><i class="fa-solid fa-crown"></i></div>
+                    <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?auto=format&fit=crop&q=80" alt="Spice Empress">
+                    <h3>Spice Empress</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Saffron • Cinnamon • Vanilla</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Saffron, Nutmeg</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Lavender, Cinnamon</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Patchouli, Musk, Vanilla</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹130</span>
+                        <span>₹109</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Spice Empress')">WhatsApp Order</button>
+                </div>
+            </div> </div>
+    </section>
+
+    <section id="faq" style="padding: 120px 0; background: var(--deep-black);">
+        <div style="width: 90%; max-width: 900px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 35px; color: #fff; margin-bottom: 20px;">The Royal <span class="luxury-italic">Concierge</span></h2>
+                <p style="color: var(--text-dim); font-size: 14px; letter-spacing: 1px;">Your questions answered by our master perfumers.</p>
             </div>
+
             <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">How do I place an order? <span>+</span></div>
-                    <div class="faq-answer">Simply click the "Order via WhatsApp" button on your favorite perfume. It will open your WhatsApp with a pre-filled message. Send that to us, and we will guide you through the payment and shipping details.</div>
+                <div style="border-bottom: 1px solid var(--glass-border); padding: 25px 0;">
+                    <h4 style="color: var(--p-gold); font-size: 16px; margin-bottom: 15px;">How do I ensure my scent lasts all day?</h4>
+                    <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">To maximize longevity, apply your Elegantora perfume to pulse points: wrists, neck, and behind the ears. For an even more lasting sillage, we recommend moisturizing your skin before application, as hydrated skin holds fragrance molecules significantly longer.</p>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">How long does the fragrance last? <span>+</span></div>
-                    <div class="faq-answer">Our perfumes are 'Extrait de Parfum' grade, typically lasting between 20 to 26 hours depending on skin type and environmental conditions.</div>
+
+                <div style="border-bottom: 1px solid var(--glass-border); padding: 25px 0;">
+                    <h4 style="color: var(--p-gold); font-size: 16px; margin-bottom: 15px;">What is the difference between Parfum and Cologne?</h4>
+                    <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">The difference lies in the concentration of essential oils. While typical Colognes contain 2-5% oil, Elegantora specializes in 'Extrait de Parfum', featuring 20-30% concentration. This is why our scents possess such profound depth and staying power.</p>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">What are your shipping charges? <span>+</span></div>
-                    <div class="faq-answer">We offer FREE shipping on all orders above ₹599. For smaller orders, a flat fee of ₹60 applies across India.</div>
+
+                <div style="border-bottom: 1px solid var(--glass-border); padding: 25px 0;">
+                    <h4 style="color: var(--p-gold); font-size: 16px; margin-bottom: 15px;">Are these fragrances safe for sensitive skin?</h4>
+                    <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">Yes. We use natural botanical extracts and high-grade alcohol bases. However, we always recommend a patch test on a small area of skin before full application to ensure complete compatibility with your unique skin chemistry.</p>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">Are these original fragrances? <span>+</span></div>
-                    <div class="faq-answer">Yes, Elegantora creates original, proprietary blends inspired by international luxury standards but crafted locally with premium ingredients.</div>
+
+                <div style="border-bottom: 1px solid var(--glass-border); padding: 25px 0;">
+                    <h4 style="color: var(--p-gold); font-size: 16px; margin-bottom: 15px;">Do you offer international shipping for the royal collection?</h4>
+                    <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">Indeed. Elegantora ships to over 50 countries worldwide. Our logistics partners ensure that your precious cargo is handled with the utmost care, arriving in a temperature-controlled environment to preserve the integrity of the oils.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="faq" id="contact" style="background: var(--bg-dark); border-top: 1px solid var(--primary-gold);">
-        <div class="container" style="text-align: center; padding: 60px 0;">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            <p style="margin-bottom: 30px; color: #ccc;">Have a specific preference? Want a custom gift box?</p>
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="https://wa.me/916238763473" class="btn-gold">Chat on WhatsApp</a>
-                <a href="mailto:support@elegantora.com" class="btn-gold" style="background: transparent; color: var(--primary-gold);">Email Support</a>
+<div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #fff; color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">NEW RELEASE</div>
+                    <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&q=80" alt="Amber Monarch">
+                    <h3>Amber Monarch</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Labdanum • Benzoin • Vanilla</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Coriander, Oregano</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Amber, Myrrh, Opoponax</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Leather, Sandalwood, Patchouli</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹140</span>
+                        <span>₹119</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Amber Monarch')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Velvet Orchid">
+                    <h3>Velvet Orchid</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Honey • Rum • Black Orchid</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Italian Bergamot, Mandarin Orange</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Jasmine, Turkish Rose, Black Orchid</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Vanilla, Myrrh, Suede</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹130</span>
+                        <span>₹105</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Velvet Orchid')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?auto=format&fit=crop&q=80" alt="Silver Mountain">
+                    <h3>Silver Mountain</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Green Tea • Blackcurrant • Musk</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Bergamot, Mandarin</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Green Tea, Blackcurrant</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Galbanum, Musk, Sandalwood</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹115</span>
+                        <span>₹95</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Silver Mountain')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #ff4d4d; color: #fff; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">BEST SELLER</div>
+                    <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?auto=format&fit=crop&q=80" alt="Tobacco Royale">
+                    <h3>Tobacco Royale</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Tobacco Leaf • Spices • Cacao</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Tobacco Leaf, Ginger</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Tonka Bean, Vanilla, Cacao</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Dried Fruits, Woody Notes</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹150</span>
+                        <span>₹125</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Tobacco Royale')">WhatsApp Order</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer style="background: #05000a; padding: 80px 0 20px; border-top: 2px solid var(--primary-gold);">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
-                <div>
-                    <h3 style="margin-bottom: 20px;">Elegantora</h3>
-                    <p style="font-size: 14px; color: #888;">Crafting the aura of royalty since 2026. Premium scents for those who dare to lead.</p>
-                </div>
-                <div>
-                    <h4 style="color: var(--primary-gold); margin-bottom: 20px;">Quick Links</h4>
-                    <ul style="font-size: 14px; color: #bbb; line-height: 2;">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#shop">Shop All</a></li>
-                        <li><a href="#faq">Privacy Policy</a></li>
+    <section id="vip" style="padding: 150px 0; background: linear-gradient(rgba(13,0,26,1), rgba(5,0,10,1)); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; border: 1px solid var(--p-gold); opacity: 0.1; border-radius: 50%;"></div>
+        
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto; text-align: center; position: relative; z-index: 2;">
+            <div class="reveal">
+                <h4 style="color: var(--p-gold); letter-spacing: 10px; margin-bottom: 20px;">EXCLUSIVE ACCESS</h4>
+                <h2 style="font-size: clamp(30px, 5vw, 60px); color: #fff; margin-bottom: 40px;">Join The <span class="luxury-italic">Royal Circle</span></h2>
+                <p style="max-width: 800px; margin: 0 auto 60px; color: var(--text-dim); line-height: 2;">
+                    Membership is not bought; it is granted to those who appreciate the finer notes of life. Members of the Royal Circle receive first-priority access to limited edition batches, private fragrance consultations, and invitation-only olfactory events.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div class="reveal" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 50px 30px; border-radius: 20px; transition: 0.5s;">
+                    <i class="fa-solid fa-gem" style="font-size: 40px; color: var(--p-gold); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 22px; margin-bottom: 15px;">Sovereign Tier</h3>
+                    <ul style="list-style: none; color: var(--text-dim); font-size: 14px; line-height: 2.5; margin-bottom: 30px;">
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> 10% Lifetime Discount</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Early Batch Access</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Free Global Shipping</li>
                     </ul>
+                    <a href="https://wa.me/916238763473" class="buy-btn" style="text-decoration: none; padding: 12px 30px; display: inline-block;">Apply Now</a>
                 </div>
-                <div>
-                    <h4 style="color: var(--primary-gold); margin-bottom: 20px;">Follow Us</h4>
-                    <ul style="font-size: 14px; color: #bbb; line-height: 2;">
-                        <li>Instagram</li>
-                        <li>Facebook</li>
+
+                <div class="reveal" style="background: rgba(212, 175, 55, 0.05); border: 1px solid var(--p-gold); padding: 60px 30px; border-radius: 20px; transform: scale(1.05); transition: 0.5s;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--p-gold); color: #000; font-size: 10px; font-weight: 900; padding: 5px 20px; border-radius: 50px;">MOST PRESTIGIOUS</div>
+                    <i class="fa-solid fa-crown" style="font-size: 50px; color: var(--p-gold); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Imperial Tier</h3>
+                    <ul style="list-style: none; color: var(--text-dim); font-size: 14px; line-height: 2.5; margin-bottom: 30px;">
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> 20% Lifetime Discount</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Bespoke Custom Scents</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> 24/7 Concierge Service</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Annual Collector's Gift</li>
                     </ul>
+                    <a href="https://wa.me/916238763473" class="buy-btn" style="background: var(--p-gold); color: #000; text-decoration: none; padding: 12px 30px; display: inline-block;">Inquire Today</a>
+                </div>
+
+                <div class="reveal" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 50px 30px; border-radius: 20px; transition: 0.5s;">
+                    <i class="fa-solid fa-medal" style="font-size: 40px; color: var(--p-gold); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 22px; margin-bottom: 15px;">Elite Tier</h3>
+                    <ul style="list-style: none; color: var(--text-dim); font-size: 14px; line-height: 2.5; margin-bottom: 30px;">
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> 15% Lifetime Discount</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Birthday Gift Sets</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--p-gold); margin-right: 10px;"></i> Private Sale Invitations</li>
+                    </ul>
+                    <a href="https://wa.me/916238763473" class="buy-btn" style="text-decoration: none; padding: 12px 30px; display: inline-block;">Apply Now</a>
                 </div>
             </div>
-            <div style="text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 12px; color: #555;">
-                <p>&copy; 2026 Elegantora Luxury Perfumes. All Rights Reserved.</p>
+        </div>
+    </section>
+<section id="testimonials" style="padding: 120px 0; background: var(--deep-black); position: relative; border-top: 1px solid var(--glass-border);">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto;">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h4 style="color: var(--p-gold); letter-spacing: 7px; margin-bottom: 15px;">THE ELITE EXPERIENCE</h4>
+                <h2 style="font-size: 38px; color: #fff;">Voices of <span class="luxury-italic">Sovereignty</span></h2>
+                <div style="width: 50px; height: 1px; background: var(--p-gold); margin: 25px auto;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <div class="reveal" style="background: var(--glass); padding: 40px; border-radius: 15px; border-left: 3px solid var(--p-gold); position: relative;">
+                    <div style="color: var(--p-gold); margin-bottom: 20px; font-size: 12px;">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--text-main); margin-bottom: 25px; line-height: 1.8; font-size: 15px;">
+                        "I have worn fragrances from Paris to Dubai, but Berry Bond has a sillage that I have never experienced before. It doesn't just trail; it commands the room. People don't ask what I'm wearing—they ask where I belong."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--p-gold); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000;">A.R</div>
+                        <div>
+                            <h5 style="color: var(--p-gold); font-size: 14px; font-family: 'Cinzel';">Aryan Rathore</h5>
+                            <p style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Business Magnate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="background: var(--glass); padding: 40px; border-radius: 15px; border-left: 3px solid var(--p-gold); position: relative;">
+                    <div style="color: var(--p-gold); margin-bottom: 20px; font-size: 12px;">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--text-main); margin-bottom: 25px; line-height: 1.8; font-size: 15px;">
+                        "DareGirl is the perfect balance of innocence and absolute power. It lasts through a 12-hour gala and still smells fresh the next morning on my silk scarves. Elegantora is the only brand I trust now."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--p-gold); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000;">S.K</div>
+                        <div>
+                            <h5 style="color: var(--p-gold); font-size: 14px; font-family: 'Cinzel';">Sanya Kapoor</h5>
+                            <p style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Fashion Editor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="background: var(--glass); padding: 40px; border-radius: 15px; border-left: 3px solid var(--p-gold); position: relative;">
+                    <div style="color: var(--p-gold); margin-bottom: 20px; font-size: 12px;">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; color: var(--text-main); margin-bottom: 25px; line-height: 1.8; font-size: 15px;">
+                        "The VelvetBlast was a gift for my wedding, and it has become my signature. There is a smokiness in the base notes that feels ancient and royal. It is not just a perfume; it is a piece of art."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--p-gold); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000;">V.M</div>
+                        <div>
+                            <h5 style="color: var(--p-gold); font-size: 14px; font-family: 'Cinzel';">Vikram Malhotra</h5>
+                            <p style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Real Estate Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 100px 0; background: var(--royal-bg);">
+        <div style="width: 90%; max-width: 1500px; margin: 0 auto;">
+            <div class="product-grid">
+                
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Jasmine Empress">
+                    <h3>Jasmine Empress</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Night Jasmine • Tuberose • Honey</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Green Leaves, Honeysuckle</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Sambac Jasmine, Tuberose</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Orris Root, Sandalwood</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹110</span><span>₹89</span></div>
+                    <button class="buy-btn" onclick="orderNow('Jasmine Empress')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&q=80" alt="Crimson Oud">
+                    <h3>Crimson Oud</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Saffron • Oud • Praline</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Saffron, Lavender</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Oud Wood, Agarwood</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Patchouli, Musk, Praline</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹175</span><span>₹149</span></div>
+                    <button class="buy-btn" onclick="orderNow('Crimson Oud')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #00ff00; color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">SUMMER VIBE</div>
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Neon Citrus">
+                    <h3>Neon Citrus</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Lime • Basil • Mandarin</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Mandarin Orange, Lime</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Basil, White Thyme</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Amberwood, Vetiver</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹95</span><span>₹75</span></div>
+                    <button class="buy-btn" onclick="orderNow('Neon Citrus')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?auto=format&fit=crop&q=80" alt="Imperial Musk">
+                    <h3>Imperial Musk</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Clean Musk • Iris • Cotton</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Aldehydes, Angelica</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Iris, Damask Rose</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Ambrette, White Musk</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹120</span><span>₹99</span></div>
+                    <button class="buy-btn" onclick="orderNow('Imperial Musk')">WhatsApp Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+<div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: var(--p-gold); color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">CRAFTSMAN SERIES</div>
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80" alt="Saffron Sovereign">
+                    <h3>Saffron Sovereign</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Kashmir Saffron • Leather • Tea</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Juniper Berries, Chinese Grapefruit</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Black Violet, Leather Accord</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Cashmeran, Raspberry, Vetiver</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹165</span>
+                        <span>₹145</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Saffron Sovereign')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="blue-x.jpeg" alt="Oceanic Opus">
+                    <h3>Oceanic Opus</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Driftwood • Sea Spray • Lemon</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Sea Salt, Amalfi Lemon</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Seaweed, Myrtle, Lavender</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Mastic, Oak, Incense</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹110</span>
+                        <span>₹89</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Oceanic Opus')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="daregirl.jpeg" alt="Peony Princess">
+                    <h3>Peony Princess</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Red Apple • Peony • Suede</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Red Apple</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Peony, Jasmine, Rose, Gillyflower</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Suede, Musk</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹125</span>
+                        <span>₹99</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Peony Princess')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; right: 15px; color: #ff4d4d;"><i class="fa-solid fa-heart"></i></div>
+                    <img src="WhatsApp Image 2026-03-28 at 10.18.32 PM.jpeg" alt="Midnight Cherry">
+                    <h3>Midnight Cherry</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Black Cherry • Almond • Tonka Bean</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Sour Cherry, Bitter Almond</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Plum, Turkish Rose, Jasmine</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Tonka Bean, Vanilla, Cinnamon</p>
+                    </div>
+                    <div class="price-tag">
+                        <span class="old">₹155</span>
+                        <span>₹135</span>
+                    </div>
+                    <button class="buy-btn" onclick="orderNow('Midnight Cherry')">WhatsApp Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gifting" style="padding: 120px 0; background: #05000a; position: relative;">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 100px; align-items: center;">
+            
+            <div class="reveal">
+                <h4 style="color: var(--p-gold); letter-spacing: 5px; margin-bottom: 20px;">ROYAL PRESENTATION</h4>
+                <h2 style="font-size: 45px; margin-bottom: 30px;">The Unboxing <span class="luxury-italic">Ceremony</span></h2>
+                <p style="color: var(--text-main); margin-bottom: 30px; font-weight: 300;">
+                    At Elegantora, we believe that the journey begins before the first spray. Every bottle is housed in a bespoke velvet-lined vault, sealed with a hand-poured wax crest that bears the mark of the sovereign.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr; gap: 25px;">
+                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                        <div style="width: 50px; height: 50px; background: var(--p-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-box-open" style="color: #000; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <h5 style="color: #fff; margin-bottom: 5px; font-family: 'Cinzel';">Hand-Pressed Gold Foiling</h5>
+                            <p style="font-size: 13px; color: var(--text-dim);">Each box is hand-finished with 24K gold foil lettering, ensuring that the vessel is as valuable as the scent within.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                        <div style="width: 50px; height: 50px; background: var(--p-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fa-solid fa-ribbon" style="color: #000; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <h5 style="color: #fff; margin-bottom: 5px; font-family: 'Cinzel';">Satin Ribbon Seal</h5>
+                            <p style="font-size: 13px; color: var(--text-dim);">Tied using traditional French techniques, our double-satin ribbons signify that your order has passed our royal quality inspection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal" style="position: relative;">
+                <div style="width: 100%; height: 500px; background: url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80') center/cover; border-radius: 10px; border: 1px solid var(--p-gold);"></div>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, var(--deep-black), transparent); opacity: 0.6;"></div>
+                <div style="position: absolute; bottom: 30px; left: 30px;">
+                    <p style="color: var(--p-gold); font-family: 'Cinzel'; letter-spacing: 2px;">THE GIFT SET EDITION</p>
+                    <h3 style="font-size: 20px;">Perfect for Dynasties</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+<div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: #000; color: var(--p-gold); border: 1px solid var(--p-gold); font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">ULTRA LUXE</div>
+                    <img src="https://images.unsplash.com/photo-1585120040315-2241b774ad0f?auto=format&fit=crop&q=80" alt="Midnight Oud">
+                    <h3>Midnight Oud</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Incense • Agarwood • Musk</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Oregano, Pimento Berry</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Amber, Opoponax, Cistus</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Leather, Oud, Sandalwood</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹190</span><span>₹169</span></div>
+                    <button class="buy-btn" onclick="orderNow('Midnight Oud')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="daregirl.jpeg" alt="Royal Vanilla">
+                    <h3>Royal Vanilla</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Madagascar Vanilla • Rum • Cocoa</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Lime, Bergamot</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Rum, Sugar Cane, Jasmine</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Vanilla, Tonka Bean, Benzoin</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹110</span><span>₹89</span></div>
+                    <button class="buy-btn" onclick="orderNow('Royal Vanilla')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <img src="WhatsApp Image 2026-03-28 at 10.18.33 PM.jpeg" alt="Desert Rose">
+                    <h3>Desert Rose</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Taif Rose • Sandalwood • Musk</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Lemon, Water Notes</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Rose, Sugar</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Vanilla, White Musk, Cedar</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹130</span><span>₹105</span></div>
+                    <button class="buy-btn" onclick="orderNow('Desert Rose')">WhatsApp Order</button>
+                </div>
+
+                <div class="product-card reveal">
+                    <div style="position: absolute; top: 15px; left: 15px; background: var(--p-gold); color: #000; font-size: 8px; font-weight: 900; padding: 5px 12px; border-radius: 50px; z-index: 5;">GRAND FINALE</div>
+                    <img src="blue-x.jpeg" alt="Golden Amber">
+                    <h3>Golden Amber</h3>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 10px; color: var(--l-gold); text-transform: uppercase; letter-spacing: 1px;">Ambergris • Spice • Wood</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left;">
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Top:</b> Cinnamon, Cardamom</p>
+                        <p style="font-size: 9px; color: var(--text-dim); margin-bottom: 5px;"><b style="color: var(--p-gold);">Heart:</b> Bourbon Vanilla, Tobacco</p>
+                        <p style="font-size: 9px; color: var(--text-dim);"><b style="color: var(--p-gold);">Base:</b> Amber, Musk, Peru Balsam</p>
+                    </div>
+                    <div class="price-tag"><span class="old">₹150</span><span>₹129</span></div>
+                    <button class="buy-btn" onclick="orderNow('Golden Amber')">WhatsApp Order</button>
+                </div>
+
+            </div> </div>
+    </section>
+
+    <section id="sourcing" style="padding: 120px 0; background: var(--deep-black); border-top: 1px solid var(--glass-border);">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto;">
+            <div class="reveal" style="text-align: center; margin-bottom: 80px;">
+                <h4 style="color: var(--p-gold); letter-spacing: 6px; margin-bottom: 15px;">THE JOURNEY OF A DROP</h4>
+                <h2 style="font-size: 38px; color: #fff;">A Global <span class="luxury-italic">Olfactory</span> Map</h2>
+                <p style="max-width: 700px; margin: 20px auto; color: var(--text-dim); font-size: 14px;">We traverse the most remote corners of the Earth to bring you ingredients that cannot be found in ordinary perfumery.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                
+                <div class="reveal" style="background: var(--glass); padding: 30px; border: 1px solid rgba(212,175,55,0.05); border-radius: 15px;">
+                    <h5 style="color: var(--p-gold); font-family: 'Cinzel'; margin-bottom: 15px;">Bulgaria • Rose Valley</h5>
+                    <p style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">Our Damask Roses are harvested at dawn, between 5:00 AM and 7:00 AM, to ensure the dew remains on the petals, preserving the highest oil concentration possible.</p>
+                </div>
+
+                <div class="reveal" style="background: var(--glass); padding: 30px; border: 1px solid rgba(212,175,55,0.05); border-radius: 15px;">
+                    <h5 style="color: var(--p-gold); font-family: 'Cinzel'; margin-bottom: 15px;">Cambodia • Pursat Forest</h5>
+                    <p style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">The source of our wild Agarwood (Oud). We only use trees that have aged for over 50 years, giving our Oud a smokiness that is deep, resinous, and eternal.</p>
+                </div>
+
+                <div class="reveal" style="background: var(--glass); padding: 30px; border: 1px solid rgba(212,175,55,0.05); border-radius: 15px;">
+                    <h5 style="color: var(--p-gold); font-family: 'Cinzel'; margin-bottom: 15px;">Italy • Calabria</h5>
+                    <p style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">The world's finest Bergamot. Our cold-pressed extraction method ensures that the zesty, sparkling top notes of our citrus scents remain crisp for hours.</p>
+                </div>
+
+                <div class="reveal" style="background: var(--glass); padding: 30px; border: 1px solid rgba(212,175,55,0.05); border-radius: 15px;">
+                    <h5 style="color: var(--p-gold); font-family: 'Cinzel'; margin-bottom: 15px;">Madagascar • Sambava</h5>
+                    <p style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">Our Vanilla is hand-pollinated and sun-cured for months. This creates the creamy, balsamic undertone found in our Royal Vanilla and DareGirl editions.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<section id="ethics" style="padding: 100px 0; background: linear-gradient(to bottom, var(--deep-black), #0a0015); border-top: 1px solid var(--glass-border);">
+        <div style="width: 85%; max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div class="reveal">
+                <i class="fa-solid fa-leaf" style="color: var(--p-gold); font-size: 30px; margin-bottom: 25px;"></i>
+                <h2 style="font-size: 35px; color: #fff; margin-bottom: 30px;">Ethical <span class="luxury-italic">Opulence</span></h2>
+                <p style="color: var(--text-dim); max-width: 800px; margin: 0 auto 50px; line-height: 2;">
+                    Luxury should never come at the cost of the Earth. Elegantora is committed to 100% cruelty-free testing and sustainable harvesting. We partner with local farmers to ensure that for every 100 bottles produced, we fund the replanting of rare botanical species in their native habitats.
+                </p>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;" class="reveal">
+                <div style="text-align: center;">
+                    <h5 style="color: var(--p-gold); font-size: 11px; letter-spacing: 2px;">RECYCLABLE GLASS</h5>
+                    <div style="width: 30px; height: 1px; background: var(--p-gold); margin: 10px auto;"></div>
+                </div>
+                <div style="text-align: center;">
+                    <h5 style="color: var(--p-gold); font-size: 11px; letter-spacing: 2px;">ZERO PARABENS</h5>
+                    <div style="width: 30px; height: 1px; background: var(--p-gold); margin: 10px auto;"></div>
+                </div>
+                <div style="text-align: center;">
+                    <h5 style="color: var(--p-gold); font-size: 11px; letter-spacing: 2px;">VEGAN EXTRACTS</h5>
+                    <div style="width: 30px; height: 1px; background: var(--p-gold); margin: 10px auto;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="concierge" style="padding: 100px 0 30px; background: var(--deep-black); border-top: 2px solid var(--p-gold);">
+        <div style="width: 90%; max-width: 1400px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                
+                <div>
+                    <h3 style="color: var(--p-gold); letter-spacing: 5px; margin-bottom: 25px;">ELEGANTORA</h3>
+                    <p style="color: var(--text-dim); font-size: 13px; line-height: 2; margin-bottom: 30px;">
+                        The definitive house of artisanal perfumery. Crafting the scents of tomorrow for the leaders of today.
+                    </p>
+                    <div style="display: flex; gap: 20px;">
+                        <a href="#" style="color: var(--p-gold); font-size: 18px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color: var(--p-gold); font-size: 18px;"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" style="color: var(--p-gold); font-size: 18px;"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="color: #fff; font-size: 14px; margin-bottom: 25px; font-family: 'Cinzel';">THE MAISON</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="#home" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">The Beginning</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#collection" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">The Vault</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#vip" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Royal Circle</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#academy" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Scent Science</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: #fff; font-size: 14px; margin-bottom: 25px; font-family: 'Cinzel';">CONCIERGE</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="#faq" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Common Inquiries</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Shipping Policy</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Care Instructions</a></li>
+                        <li style="margin-bottom: 12px;"><a href="https://wa.me/916238763473" style="color: var(--p-gold); text-decoration: none; font-size: 13px;">Contact Expert</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: #fff; font-size: 14px; margin-bottom: 25px; font-family: 'Cinzel';">THE DISPATCH</h4>
+                    <p style="color: var(--text-dim); font-size: 12px; margin-bottom: 20px;">Join the elite for seasonal collection updates.</p>
+                    <div style="display: flex; border-bottom: 1px solid var(--p-gold); padding: 5px 0;">
+                        <input type="email" placeholder="Email Address" style="background: transparent; border: none; color: #fff; font-size: 12px; width: 100%;">
+                        <button style="background: transparent; border: none; color: var(--p-gold); cursor: pointer;"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <p style="font-size: 10px; color: var(--text-dim); letter-spacing: 1px;">© 2026 ELEGANTORA PARFUMS. ALL RIGHTS RESERVED.</p>
+                <p style="font-size: 10px; color: var(--text-dim); letter-spacing: 1px;">DESIGNED BY ROYAL DECREE.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 1. MOBILE MENU TOGGLE
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        // 1. NAVIGATION SCROLL EFFECT
+        window.onscroll = function() {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        };
 
-        menuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '80px';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = 'var(--bg-dark)';
-            navLinks.style.padding = '20px';
-        });
-
-        // 2. FAQ ACCORDION LOGIC
-        const faqItems = document.querySelectorAll('.faq-item');
-        
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isOpen = item.classList.contains('active');
-                // Close all other items
-                faqItems.forEach(i => i.classList.remove('active'));
-                // Toggle current item
-                if (!isOpen) item.classList.add('active');
-            });
-        });
-
-        // 3. DYNAMIC MULTI-TIMER SYSTEM
-        function updateTimers() {
-            const timerElements = document.querySelectorAll('.timer');
-            
-            timerElements.forEach(el => {
-                let currentTime = parseInt(el.getAttribute('data-time'));
-                
-                if (currentTime <= 0) {
-                    el.innerHTML = "OFFER EXPIRED";
-                    return;
+        // 2. REVEAL ANIMATION OBSERVER
+        const revealCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
                 }
-
-                let days = Math.floor(currentTime / (24 * 60 * 60));
-                let hours = Math.floor((currentTime % (24 * 60 * 60)) / (60 * 60));
-                let minutes = Math.floor((currentTime % (60 * 60)) / 60);
-                let seconds = currentTime % 60;
-
-                el.innerHTML = `Flash Sale Ends: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-                
-                // Decrement time
-                el.setAttribute('data-time', currentTime - 1);
             });
-        }
+        };
 
-        // Run timer every second
-        setInterval(updateTimers, 1000);
+        const observer = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(element => {
+            observer.observe(element);
+        });
 
-        // 4. WHATSAPP ORDER FUNCTION
+        // 3. WHATSAPP ORDER ENGINE
         function orderNow(productName) {
             const phoneNumber = "916238763473";
-            const message = `Greetings Elegantora! I am interested in purchasing the "${productName}". Please let me know the availability and payment process.`;
+            const message = `Greetings Elegantora Concierge! I am captivated by the "${productName}" and wish to secure it for my collection. Please guide me through the acquisition process.`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
             window.open(whatsappURL, '_blank');
         }
 
-        // 5. SMOOTH SCROLLING
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // 4. PREVENT RIGHT CLICK (OPTIONAL LUXURY FEEL)
+        document.addEventListener('contextmenu', event => {
+            // Uncomment the line below if you want to disable right-click for a "protected" feel
+            // event.preventDefault();
         });
     </script>
 </body>
