@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegantora | The Essence of Royalty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+       /* --- THE NEON ROYAL GOLD PRODUCT CARD --- */
+.product-card {
+    background: var(--glass);
+    border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle border when idle */
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* This makes the hover smooth and bouncy */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* THE HOVER TRIGGER */
+.product-card:hover {
+    transform: translateY(-12px) scale(1.02); /* Lifts and grows slightly */
+    background: rgba(20, 0, 43, 0.9); /* Darkens background to make gold pop */
+    
+    /* THE NEON GLOW */
+    border-color: #ffd700; 
+    box-shadow: 
+        0 0 10px rgba(212, 175, 55, 0.5),  /* Inner soft glow */
+        0 0 25px rgba(212, 175, 55, 0.7),  /* Middle neon glow */
+        0 0 45px rgba(212, 175, 55, 0.3);  /* Outer wide aura */
+}
+
+/* Make the image glow slightly too */
+.product-card:hover img {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Update the button to match the neon vibe on hover */
+.product-card:hover .buy-btn {
+    background: var(--primary-gold);
+    color: #000;
+    box-shadow: 0 0 15px var(--primary-gold);
+} /* --- ROOT VARIABLES --- */
+        :root {
+            --primary-gold: #d4af37;
+            --dark-gold: #aa841e;
+            --deep-purple: #14002b;
+            --bg-dark: #0d001a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-light: #f4f4f4;
+            --transition: all 0.4s ease;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-name {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(13, 0, 26, 0.95);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--primary-gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 400;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+            text-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--primary-gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(20, 0, 43, 0.7), rgba(13, 0, 26, 0.9)), 
+                        url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content h2 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+            letter-spacing: 5px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .btn-gold {
+            background: var(--primary-gold);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+            transition: var(--transition);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            box-shadow: 0 0 20px var(--primary-gold);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 100px 0;
+            background: var(--deep-purple);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: -20px 20px 0 var(--primary-gold);
+        }
+
+        /* --- PRODUCTS GRID --- */
+        .shop {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--primary-gold);
+            bottom: 0;
+            left: 25%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-gold);
+            color: #000;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .stock-notice {
+            color: #ff4d4d;
+            font-size: 13px;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .timer {
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            font-size: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .buy-btn:hover {
+            background: var(--primary-gold);
+            color: #000;
+        }
+        /* --- TESTIMONIALS SECTION --- */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--bg-dark);
+            text-align: center;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+
+        .testimonial-slider::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-gold);
+            text-align: left;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .customer-info .avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq {
+            padding: 100px 0;
+            background: var(--deep-purple);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--glass);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.5s cubic-bezier(0,1,0,1);
+            color: #bbb;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 20px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-content h2 { font-size: 40px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-img { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">ELEGANTORA</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">The Brand</a></li>
+                <li><a href="#shop">Collection</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="btn-gold" style="padding: 10px 20px;">Order Now</a></li>
+            </ul>
+            <div class="mobile-menu-btn">☰</div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>ELEGANCE IN EVERY DROP</h2>
+            <p>ESTABLISHED 2026 • LUXURY PERFUMERY</p>
+            <a href="#shop" class="btn-gold">Explore Collection</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Our Aura, Your Identity</h2>
+                <p>At Elegantora, we believe that a scent is more than just a fragrance; it is a silent introduction. Founded on the principles of royal heritage and modern sophistication, our blends are crafted using the finest ingredients sourced globally.</p>
+                <br>
+                <p>Each bottle is a masterpiece, designed to resonate with your personal power and elegance. Experience the transition from ordinary to extraordinary.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80" alt="Luxury Perfume Creation">
+            </div>
+        </div>
+    </section>
+
+    <section class="shop" id="shop">
+        <div class="container">
+            <div class="section-title">
+                <h2>Signature Collection</h2>
+            </div>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="badge">BEST SELLER</div>
+                    <img src="WhatsApp Image 2026-03-28 at 10.18.33 PM.jpeg" alt="Royal Oud">
+                    <h3>Berry Bond</h3>
+                    <p class="stock-notice">Only 3 left in stock!</p>
+                    <div class="timer" data-time="604800">Loading offer...</div>
+                    <p class="product-price"><span class="old-price">₹120</span>₹99</p>
+                    <button class="buy-btn" onclick="orderNow('Royal Oud')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="daregirl.jpeg" alt="DareGirl">
+                    <h3>DareGirl</h3>
+                    <p class="stock-notice">New Arrival</p>
+                    <div class="timer" data-time="500000">Loading offer...</div>
+                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
+                    <button class="buy-btn" onclick="orderNow('Dare Girl;')">Order via WhatsApp</button>
+
+                </div>
+
+                <div class="product-card">
+                    <div class="badge">GOLD EDITION</div>
+                    <img src="WhatsApp Image 2026-03-28 at 10.18.32 PM.jpeg" alt="VelvetBlast">
+                    <h3>VelvetBlast</h3>
+                    <div class="timer" data-time="400000">Loading offer...</div>
+                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
+                    <button class="buy-btn" onclick="orderNow('Velvet Blast')">Order via WhatsApp</button>
+
+                </div>
+
+                <div class="product-card">
+                    <img src="blue-x.jpeg" alt="Blue-X">
+                    <h3>Blue-X</h3>
+                    <div class="timer" data-time="300000">Loading offer...</div>
+                     <p class="product-price"><span class="old-price">₹120</span>₹99</p>
+                    <button class="buy-btn" onclick="orderNow('Blue-X')">Order via WhatsApp</button>
+
+                                <div class="product-card">
+                    <img src="midnight.jpg" alt="Midnight Aura">
+                    <h3>Midnight Aura</h3>
+                    <p class="stock-notice">Limited Edition</p>
+                    <div class="timer" data-time="250000">Loading offer...</div>
+                    <p class="product-price">₹1,299</p>
+                    <button class="buy-btn" onclick="orderNow('Midnight Aura')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge">PROMO</div>
+                    <img src="golden_dust.jpg" alt="Golden Dust">
+                    <h3>Golden Dust</h3>
+                    <p class="stock-notice">Fast Selling</p>
+                    <div class="timer" data-time="180000">Loading offer...</div>
+                    <p class="product-price"><span class="old-price">₹1,500</span>₹899</p>
+                    <button class="buy-btn" onclick="orderNow('Golden Dust')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="emperor.jpg" alt="Emperor">
+                    <h3>Emperor</h3>
+                    <div class="timer" data-time="450000">Loading offer...</div>
+                    <p class="product-price">₹1,499</p>
+                    <button class="buy-btn" onclick="orderNow('Emperor')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="rose_velvet.jpg" alt="Rose Velvet">
+                    <h3>Rose Velvet</h3>
+                    <div class="timer" data-time="320000">Loading offer...</div>
+                    <p class="product-price">₹999</p>
+                    <button class="buy-btn" onclick="orderNow('Rose Velvet')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge">HOT</div>
+                    <img src="ocean_breeze.jpg" alt="Ocean Breeze">
+                    <h3>Ocean Breeze</h3>
+                    <div class="timer" data-time="120000">Loading offer...</div>
+                    <p class="product-price">₹799</p>
+                    <button class="buy-btn" onclick="orderNow('Ocean Breeze')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="mystic_wood.jpg" alt="Mystic Wood">
+                    <h3>Mystic Wood</h3>
+                    <div class="timer" data-time="86400">Loading offer...</div>
+                    <p class="product-price">₹1,199</p>
+                    <button class="buy-btn" onclick="orderNow('Mystic Wood')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="saffron_lux.jpg" alt="Saffron Lux">
+                    <h3>Saffron Lux</h3>
+                    <div class="timer" data-time="95000">Loading offer...</div>
+                    <p class="product-price">₹1,599</p>
+                    <button class="buy-btn" onclick="orderNow('Saffron Lux')">Order via WhatsApp</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge">NEW</div>
+                    <img src="urban_night.jpg" alt="Urban Night">
+                    <h3>Urban Night</h3>
+                    <div class="timer" data-time="150000">Loading offer...</div>
+                    <p class="product-price">₹899</p>
+                    <button class="buy-btn" onclick="orderNow('Urban Night')">Order via WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Royals Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p>"The Royal Oud is unlike anything I've ever used. It lasts all day and I get compliments everywhere I go. Truly worth every penny."</p>
+                    <div class="customer-info">
+                        <div class="avatar">AK</div>
+                        <div>
+                            <strong>Sanvika</strong><br>
+                            <small>Verified Buyer</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I was skeptical about ordering via WhatsApp, but the process was seamless. Elegantora team was very helpful with scent recommendations."</p>
+                    <div class="customer-info">
+                        <div class="avatar">PS</div>
+                        <div>
+                            <strong>Avani</strong><br>
+                            <small>Verified Buyer</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"VelvetBlast is my new signature scent. The packaging was beautiful and the delivery was fast. Highly recommended!"</p>
+                    <div class="customer-info">
+                        <div class="avatar">RM</div>
+                        <div>
+                            <strong>Vinay Krishna</strong><br>
+                            <small>Verified Buyer</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How do I place an order? <span>+</span></div>
+                    <div class="faq-answer">Simply click the "Order via WhatsApp" button on your favorite perfume. It will open your WhatsApp with a pre-filled message. Send that to us, and we will guide you through the payment and shipping details.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long does the fragrance last? <span>+</span></div>
+                    <div class="faq-answer">Our perfumes are 'Extrait de Parfum' grade, typically lasting between 20 to 26 hours depending on skin type and environmental conditions.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What are your shipping charges? <span>+</span></div>
+                    <div class="faq-answer">We offer FREE shipping on all orders above ₹599. For smaller orders, a flat fee of ₹60 applies across India.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are these original fragrances? <span>+</span></div>
+                    <div class="faq-answer">Yes, Elegantora creates original, proprietary blends inspired by international luxury standards but crafted locally with premium ingredients.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faq" id="contact" style="background: var(--bg-dark); border-top: 1px solid var(--primary-gold);">
+        <div class="container" style="text-align: center; padding: 60px 0;">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <p style="margin-bottom: 30px; color: #ccc;">Have a specific preference? Want a custom gift box?</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="https://wa.me/916238763473" class="btn-gold">Chat on WhatsApp</a>
+                <a href="mailto:support@elegantora.com" class="btn-gold" style="background: transparent; color: var(--primary-gold);">Email Support</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #05000a; padding: 80px 0 20px; border-top: 2px solid var(--primary-gold);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Elegantora</h3>
+                    <p style="font-size: 14px; color: #888;">Crafting the aura of royalty since 2026. Premium scents for those who dare to lead.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-gold); margin-bottom: 20px;">Quick Links</h4>
+                    <ul style="font-size: 14px; color: #bbb; line-height: 2;">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#shop">Shop All</a></li>
+                        <li><a href="#faq">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-gold); margin-bottom: 20px;">Follow Us</h4>
+                    <ul style="font-size: 14px; color: #bbb; line-height: 2;">
+                        <li>Instagram</li>
+                        <li>Facebook</li>
+                        <li>TikTok</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 12px; color: #555;">
+                <p>&copy; 2026 Elegantora Luxury Perfumes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. MOBILE MENU TOGGLE
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '80px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'var(--bg-dark)';
+            navLinks.style.padding = '20px';
+        });
+
+        // 2. FAQ ACCORDION LOGIC
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+                // Close all other items
+                faqItems.forEach(i => i.classList.remove('active'));
+                // Toggle current item
+                if (!isOpen) item.classList.add('active');
+            });
+        });
+
+        // 3. DYNAMIC MULTI-TIMER SYSTEM
+        function updateTimers() {
+            const timerElements = document.querySelectorAll('.timer');
+            
+            timerElements.forEach(el => {
+                let currentTime = parseInt(el.getAttribute('data-time'));
+                
+                if (currentTime <= 0) {
+                    el.innerHTML = "OFFER EXPIRED";
+                    return;
+                }
+
+                let days = Math.floor(currentTime / (24 * 60 * 60));
+                let hours = Math.floor((currentTime % (24 * 60 * 60)) / (60 * 60));
+                let minutes = Math.floor((currentTime % (60 * 60)) / 60);
+                let seconds = currentTime % 60;
+
+                el.innerHTML = `Flash Sale Ends: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+                
+                // Decrement time
+                el.setAttribute('data-time', currentTime - 1);
+            });
+        }
+
+        // Run timer every second
+        setInterval(updateTimers, 1000);
+
+        // 4. WHATSAPP ORDER FUNCTION
+        function orderNow(productName) {
+            const phoneNumber = "916238763473";
+            const message = `Greetings Elegantora! I am interested in purchasing the "${productName}". Please let me know the availability and payment process.`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+
+        // 5. SMOOTH SCROLLING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
